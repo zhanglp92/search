@@ -20,16 +20,16 @@ typedef struct {
     RecordType  r[LIST_SIZE+1];
     int     length;
 }RecordList;
-RecordList  list = {{}, 1};
+RecordList  list;
 
 /* 创建一个链 */
-void create_list (RecordList l)
+void create_list (RecordList *l)
 {
     int     i;
     for (i = 0; i < LIST_SIZE; i++) {
         printf ("(%d) input key and data : ", i+1);
-        scanf ("%d %c", &(l.r[i].key), &(l.r[i].other_data)); 
-        l.length++; 
+        scanf ("%d %c", &(l->r[i].key), &(l->r[i].other_data)); 
+        l->length++; 
     }
 }
 
@@ -47,7 +47,7 @@ int seq_search (RecordList l, int key)
 
 int main (void)
 {
-    create_list (list);
+    create_list (&list);
     int     i = seq_search (list, 4);
 
     i < list.length ? 
